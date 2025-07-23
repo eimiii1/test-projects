@@ -1,93 +1,104 @@
-﻿class Deposit
-{
+﻿
+using System.Runtime.CompilerServices;
 
-    public double depositAmount { get; set; }
-    public void mainDeposit(double amount)
+class Deposit // Deposit only so value is always resetting and don't hold a permanent value.
+{
+    private double depositValue;
+    public double value
     {
-        Console.WriteLine($"You deposited total of amount of ${amount}.");
-        depositAmount = amount;
-        Balance balance = new Balance();
-        balance.depositBalance = depositAmount;
+        get { return depositValue; }
+        set { depositValue = value; }
     }
 }
 
 class Withdraw
 {
-    public double moneyWithdrew(double amount)
+    private double withdrawValue;
+    public double value
     {
-        return amount;
-}
+        get { return withdrawValue; }
+        set { withdrawValue = value; }
+    }
 }
 
 class Balance
 {
-    private double deposit;
-
-    public double depositBalance { get; set; }
-
-
-    // total balance
-    private double balance;
-    public double totalBalance { get; set; }
+    private double totalBalance;
+    public double total_balance
+    {
+        get { return totalBalance; }
+        set { totalBalance = value; }
+    }
 }
 
 class Program
 {
-    public double amount;
+    static Deposit deposit = new Deposit();
+    static Withdraw withdraw = new Withdraw();
+    static Balance balance = new Balance();
 
-    public void System()
+    public static void System()
     {
-        Console.WriteLine("[1] - Deposit");
-        Console.WriteLine("[2] - Withdraw");
-        Console.WriteLine("[3] - Balance");
 
+        Console.WriteLine("Bank");
         Console.WriteLine("");
 
-        Console.Write("Choose (number only): ");
-        int choose = 0;
-        try
-        {
-            choose = Convert.ToInt32(Console.ReadLine());
-            Console.WriteLine("");
+        Console.WriteLine("[1] - Deposit");
+        Console.WriteLine("[2] - Withdraw");
+        Console.WriteLine("[3] - Exit");
+        Console.WriteLine("");
 
-        }
-        catch (Exception e)
-        {
-            Console.WriteLine(e);
-        }
+        Console.Write("Select function (number only): ");
 
-        Program program = new Program();
-        Deposit deposit = new Deposit();
-        Withdraw withdraw = new Withdraw();
-        Balance balance = new Balance();
+        int select = Convert.ToInt32(Console.ReadLine());
 
 
-            switch (choose)
+        Console.WriteLine("");
+        double depositAmount = 0;
+        double withdrawAmount = 0;
+        double balanceAmount = 0;
+
+        switch (select)
         {
             case 1:
-                Console.Write("Deposit amount: ");
-                amount = Convert.ToDouble(Console.ReadLine());
-                deposit.mainDeposit(amount);
-                Console.WriteLine(deposit.depositAmount);
+                Console.Write("Amount to deposit: ");
+                depositAmount = Convert.ToDouble(Console.ReadLine()); // inputs deposit amount
+                deposit.value = depositAmount; // passes the input amount to value field inside the deposit class
+                Console.WriteLine($"You deposited with an amount of {deposit.value}$.");
+                balance.total_balance += deposit.value;
                 break;
 
             case 2:
-                Console.WriteLine("Withdraw amount: ");
-                amount = Convert.ToDouble(Console.ReadLine());
+                Console.Write("Amount to withdraw: ");
+                withdrawAmount = Convert.ToDouble(Console.ReadLine());
+                withdraw.value = withdrawAmount;
+                balance.total_balance -= withdraw.value;
                 break;
 
             case 3:
+                Console.WriteLine("Bank Exit.");
+                Environment.Exit(0);
                 break;
-
-            default:
-                return;
         }
-        
+
     }
 
     static void Main(string[] args)
     {
-        Program program = new Program();
-        program.System();
+        string? check = "Y";
+
+        while (check == "Y")
+        {
+            System();
+            Console.WriteLine("");
+
+            Console.Write("Check Balance? [Y/N]: ");
+            check = Console.ReadLine()!.ToUpper();
+
+            Console.WriteLine("");
+            Console.WriteLine($"Total Balance: {balance.total_balance}");
+            Console.WriteLine("");
+        }
+        Console.WriteLine("Bank Exit.");
     }
 }
