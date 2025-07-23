@@ -45,7 +45,6 @@ class Program
 
         Console.Write("Choose (number only): ");
         int choose = 0;
-
         try
         {
             choose = Convert.ToInt32(Console.ReadLine());
