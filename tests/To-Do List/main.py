@@ -1,37 +1,45 @@
+import inquirer 
+from yaspin import yaspin
+import pyfiglet
 import os
-from list import List
+import time
+from add import Add
 
-def Main():
-    print("[1] - Add List")
-    print("[2] - Delete List")
-    print("[3] - Check List")
-
+def main():
+    title = pyfiglet.figlet_format("To-Do List")
+    print(title)
+    
     print()
-    select_option = 0
-
-    while True:
-        try:
-            select_option = int(input("Select an option: "))
-            break
-        except Exception as e:
-            print()
-            print(e)
-            print("Only input an integer.")
-            print()
-
-
-    match (select_option):
-        case 1:
-            pass
-
-        case 2:
-            pass
-
-        case 3:
-            os.system("clear")
-            call_list = List()
-            call_list.ShowList("Item")
-            call_list.ShowList("Item")
-            call_list.ShowList("Item")
-
-Main()
+    
+    functions = [
+        inquirer.List(
+            "function",
+            message="Select a function",
+            choices=["Add List", "Delete List", "Check List", "Exit"]
+        )
+    ]
+    
+    selected_function = inquirer.prompt(functions)
+    
+    os.system("cls" if os.name == "nt" else "clear")
+    
+    if selected_function["function"] == "Add List":
+        add_title = pyfiglet.figlet_format("Add List")
+        print(add_title)
+        
+        add_module = Add()
+        add_module.addList()
+        
+    elif selected_function["function"] == "Delete List":
+        delete_title = pyfiglet.figlet_format("Delete List")
+        print(delete_title)
+        
+    elif selected_function["function"] == "Check List":
+        check_title = pyfiglet.figlet_format("Check List")
+        print(check_title)
+        
+    elif selected_function["function"] == "Exit":
+        os.system("cls" if os.name == "nt" else "clear")
+        exit()
+    
+main()

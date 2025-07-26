@@ -1,10 +1,4 @@
-
-
 class List:
-    def ShowList(self, *lists):
-
-        
-        for x in range(len(lists)):
-            print(f"[ ] - {lists[x]}")
-
-
+    def lists_created(self, *lists):
+        for i in range(len(lists)):
+            print(lists[i])
