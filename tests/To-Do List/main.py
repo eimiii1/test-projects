@@ -5,10 +5,11 @@ import os
 import time
 from add import Add
 
+
 def main():
+    
     title = pyfiglet.figlet_format("To-Do List")
     print(title)
-    
     print()
     
     functions = [
@@ -28,7 +29,7 @@ def main():
         print(add_title)
         
         add_module = Add()
-        add_module.addList()
+        add_module.addList()    
         
     elif selected_function["function"] == "Delete List":
         delete_title = pyfiglet.figlet_format("Delete List")
@@ -38,8 +39,12 @@ def main():
         check_title = pyfiglet.figlet_format("Check List")
         print(check_title)
         
+        list_module = list()
+        list_module.lists_created()
+        
     elif selected_function["function"] == "Exit":
         os.system("cls" if os.name == "nt" else "clear")
         exit()
-    
-main()
+        
+while True:
+    main()

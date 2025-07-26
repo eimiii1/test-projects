@@ -12,5 +12,6 @@ class Add:
             inquirer.Text("item", message="Item")
         ]
         added_item = inquirer.prompt(item)
-        
+        # os.system("cls" if os.name == "nt" else "clear")
+        add_list = List()
         add_list.lists_created(added_item["item"])
