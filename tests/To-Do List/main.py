@@ -4,9 +4,13 @@ import pyfiglet
 import os
 import time
 from add import Add
+from item import Item
 
+added_items = [] # create a list to store added items (should be outside the main() function)
 
 def main():
+    add_module = Add() # Add Clas    
+    item_module = Item()
     
     title = pyfiglet.figlet_format("To-Do List")
     print(title)
@@ -16,7 +20,7 @@ def main():
         inquirer.List(
             "function",
             message="Select a function",
-            choices=["Add List", "Delete List", "Check List", "Exit"]
+            choices=["Add List", "Check List", "Exit"]
         )
     ]
     
@@ -25,26 +29,24 @@ def main():
     os.system("cls" if os.name == "nt" else "clear")
     
     if selected_function["function"] == "Add List":
-        add_title = pyfiglet.figlet_format("Add List")
-        print(add_title)
         
-        add_module = Add()
-        add_module.addList()    
-        
-    elif selected_function["function"] == "Delete List":
-        delete_title = pyfiglet.figlet_format("Delete List")
-        print(delete_title)
-        
+        add_module.addList()
+        added_items.extend(add_module.items) 
+
     elif selected_function["function"] == "Check List":
-        check_title = pyfiglet.figlet_format("Check List")
-        print(check_title)
-        
-        list_module = list()
-        list_module.lists_created()
+        item_module.show_item(added_items)
         
     elif selected_function["function"] == "Exit":
+        
+        exit_title = pyfiglet.figlet_format("Exiting...")
+        print(exit_title)
+    
+        with yaspin(text=""):
+            time.sleep(1)
+
         os.system("cls" if os.name == "nt" else "clear")
         exit()
-        
+
 while True:
+    os.system("cls" if os.name == "nt" else "clear")
     main()
