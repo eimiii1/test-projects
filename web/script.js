@@ -1,5 +1,5 @@
 const hello = () => {
-    alert("Sample!")
+    alert("Sample!!")
 }
 
 document.getElementById('button').addEventListener("click", hello)
