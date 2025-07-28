@@ -15,4 +15,7 @@ class Add:
         add_item = str(input("Enter the item to add: "))
         self.items.append(add_item)
         
+        with yaspin(text=""):
+            time.sleep(1)
+        
         os.system("cls" if os.name == "nt" else "clear")

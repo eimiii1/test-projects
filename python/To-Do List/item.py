@@ -1,6 +1,7 @@
 from yaspin import yaspin 
 import os 
 import pyfiglet 
+import time
 import inquirer
 
 class Item:   
@@ -14,5 +15,7 @@ class Item:
         try:
             check_items = inquirer.checkbox(message="Select items to check (Press Ctrl + C to BACK, press Space to check/uncheck)", choices=items)
         except KeyboardInterrupt:
+            with yaspin(text=""):
+                time.sleep(1)
             os.system("cls" if os.name == "nt" else "clear")
             return
