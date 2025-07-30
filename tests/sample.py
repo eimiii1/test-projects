@@ -11,8 +11,8 @@ scores = {
     "Jake": 66
 }
 
-top_scores = sorted(scores.items(), key=lambda item: item[1], reverse=True)
-bottom_scores = sorted(scores.items(), key=lambda item: item[1])
+top_scores = sorted(scores.items(), key=lambda item: item[1], reverse=True) # sorted top scores 
+bottom_scores = sorted(scores.items(), key=lambda item: item[1]) # sorted bottom scores 
 
 print("Top 3 Students")
 for name, grade in top_scores[:3]:
