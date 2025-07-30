@@ -1,24 +1,44 @@
-scores = {
-    "Anna": 88,
-    "Ben": 67,
-    "Cara": 90,
-    "Dan": 45,
-    "Ella": 76,
-    "Finn": 59,
-    "Gina": 84,
-    "Hugo": 92,
-    "Ivy": 70,
-    "Jake": 66
+import inquirer
+import json
+from yaspin import yaspin
+import time
+import pyfiglet
+
+x = { # data to be converted into json
+    "name": "Philip",
+    "age": 19,
+    "address": "Gapan City",
+    "birth": "May 16, 2006"
 }
 
-top_scores = sorted(scores.items(), key=lambda item: item[1], reverse=True) # sorted top scores 
-bottom_scores = sorted(scores.items(), key=lambda item: item[1]) # sorted bottom scores 
+# save as file 
 
-print("Top 3 Students")
-for name, grade in top_scores[:3]:
-    print(f"{name}: {grade}")
+with open("my-data.json", "w") as file:
+    json.dump(x, file, indent=4)
 
-print()
-print("Bottom 3 Students")
-for name, grade in bottom_scores[:3]:
-    print(f"{name}: {grade}")
+print("file saved.")
+
+load_file = [
+    inquirer.List(
+        "answer",
+        message="Load the file?",
+        choices=["Yes", "No"]
+    )
+]
+
+load_prompt = inquirer.prompt(load_file) # prompt to choose if yes / no 
+
+if load_prompt["answer"] == "Yes":
+    with open("my-data.json", "r") as file:
+        loaded_file = json.load(file)
+        print()
+
+        for key, value in loaded_file.items():
+            print(f"{key}: {value}")
+
+elif load_prompt["answer"] == "No":
+    with yaspin(text=""):
+        time.sleep(1)
+
+        exit = pyfiglet.figlet_format("Exit")
+        print(exit)
