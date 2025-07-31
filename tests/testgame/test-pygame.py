@@ -17,7 +17,7 @@ clock = pygame.time.Clock()
 
 # initialize the rectangle 
 
-player_img = pygame.image.load("tests/testgame/zombie.png").convert_alpha()
+player_img = pygame.image.load("zombie.png").convert_alpha()
 player_img = pygame.transform.scale(player_img, (50, 70))
 player_x = 100 # rectangle x position 
 player_y = 100 # rectangle y position
