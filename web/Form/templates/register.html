@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<h1>GAGO</h1>
+{% endblock %}
+
+{% block body %}
+<div class="container">
+    <h1>REGISTER</h1>
+    <form action="/register" method="POST">
+        <input type="email" name="email" placeholder="Email" required>
+        <input type="password" name="password" placeholder="password" required>
+        <input type="submit" value="Register">
+    </form>
+    <h5>Already have an account? <a class="login-account" href="/login">Click Here</a></h5>
+</div>
+{% endblock %}
