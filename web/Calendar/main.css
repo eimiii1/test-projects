@@ -1,0 +1,105 @@
+@import url('https://fonts.cdnfonts.com/css/sf-pro-display');
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  font-family: SF Pro Display;
+}
+
+#container {
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+  border: 1px solid;
+  background-color: rgb(231, 228, 228);
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.calendar {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+  padding: 10px;
+  border-radius: 20px;
+  user-select: none;
+}
+
+.calendar-header {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    min-height: 3em;
+    min-width: 100%;;
+    margin-top: 0.5em;
+    column-gap: 8.5em;
+}
+
+.calendar-header img {
+    padding: 10px;
+    border: 1px solid rgb(231, 231, 231);
+    border-radius: 50%;
+    box-shadow: 0 0px 1px rgba(0, 0, 0 ,0.2);
+    height: 20px;
+    width: 20px;
+}
+
+.calendar-header img:hover {
+    background-color: rgb(241, 237, 237);
+    border: 1px solid;
+}
+
+#prev-btn.disabled {
+    background-color: black;
+}
+
+.current-month {
+    font-size: 1.5rem;
+    font-weight: 1000;
+}
+
+.days-container {
+    display: flex;
+    column-gap: 2em;
+}
+.dates-container {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    column-gap: 1.5em;
+}
+
+.each-day, .each-date {
+    padding: 20px;
+    margin: 5px;
+}
+
+.each-day {
+    font-weight: 600;
+}
+
+.each-day:nth-child(7) {
+    color: rgb(207, 21, 21);
+}
+
+.each-date {
+    border-radius: 50%;
+}
+
+.each-date:hover {
+    background-color: rgb(200, 200, 200);
+}
+
+.each-date.inactive {
+    color: rgb(100, 100, 100);
+}
+
+.each-date.today {
+    background-color: black;
+    color: white;
+    font-weight: 600;
+}
